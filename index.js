@@ -37,17 +37,22 @@ app.use(oidc.router);
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // LOGIN
 // app.get('/', (req, res) => {
 //   res.send('<h1> Welcome!!</h1>');
 // });
 
 app.get('/home', (req, res) => {
-  res.send('<h1> Welcome</h1><a href="/login">Login</a>')
+  res.sendFile(path.join(__dirname, './public/home.html'));
+  // res.send('<h1> Welcome</h1><a href="/login">Login</a>')
 });
 
+
 app.get('/admin', oidc.ensureAuthenticated(), (req, res) => {
-  res.send('Admin page');
+  res.sendFile(path.join(__dirname, './public/admin.html'));
+  // res.send('Admin page');
 });
 
 app.get('/logout', (req, res) => {
@@ -101,4 +106,4 @@ oidc.on('error', err => {
 console.log('oidc error: ', err);
 });
 
-app.listen(port, () => console.log(`Dev-Musing is listening at port ${port}`));
+//app.listen(port, () => console.log(`Dev-Musing is listening at port ${port}`));
