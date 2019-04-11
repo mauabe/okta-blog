@@ -27,7 +27,7 @@ const oidc = new ExpressOIDC({
   routes: {
     callback: {
       path: '/authorization-code/callback',
-      defaultRedirect: '/admin/'
+      defaultRedirect: '/admin'
     }
   }
 });

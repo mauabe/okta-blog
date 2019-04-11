@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
+'use strict';
 
 const e = React.createElement;
 
@@ -10,7 +11,7 @@ const AppNav = () => (
   </nav>
 );
 
-const Card = ({ item, handleSubmit, handleEdit, hanleDelete, handleCancel }) => {
+const Card = ({ item, handleSubmit, handleEdit, handleDelete, handleCancel }) => {
   const {title, content, editMode } = item;
   if(editMode){
     return(
@@ -44,4 +45,110 @@ const Card = ({ item, handleSubmit, handleEdit, hanleDelete, handleCancel }) => 
   }
 }
 
-class Admin
+class Admin extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {data: []};
+  }
+
+  componentDidMount(){
+    this.getPosts();
+  }
+
+  getPosts = async() => {
+    const response = await fetch('/posts');
+    const data = await response.json();
+    data.forEach(itme => item.editMode = false);
+    this.setState({data})
+  }
+
+  addNewPost = () => {
+    const data = this.state.data;
+    data.unshift({
+      editMode: true,
+      title: '',
+      content: ''
+    })
+    this.setState({data})
+  }
+  handleCancel = async() => {
+    await this.getPosts();
+  }
+
+  handleEdit = (postId) => {
+    const data = this.state.data.map((item) => {
+      if(item.id === postId){
+        item.editMode = true;
+      }
+      return item;
+    });
+    this.setState({data})
+  }
+
+  handleDelete = async (postId) => {
+    await fetch(`/posts/${postId}`, {
+      method: 'DELETE', 
+      headers: {
+        'content-type': 'application/json',
+        accept: 'application/json',
+      },
+    });
+    await this.getPosts();
+  }
+
+  handleSubmit = async(event) => {
+    event.prefentDefault();
+    const data = new FormData(event.target);
+    const body = JSON.stringify({
+      title: data.get('title'),
+      content: data.get('content'),
+    });
+    const headers = {
+      'content-type': 'application/json',
+      accept: 'application/json',
+    };
+    if(data.get('id')){
+      await fetch(`/posts/${data.get('id')}`, {
+        method: 'PUT',
+        headers,
+        body,
+      });
+    } else {
+      await fetch('/posts', {
+        method: 'POST',
+        headers,
+        body,
+      });
+    }
+    await this.getPosts();
+  }
+
+  render() {
+    return (
+      <div>
+        <AppNav />
+        <button type='button' class='mt-4 mb-2 btn btn-primary btn-sm float-right' onClick={this.addNewPost}>
+         Add New Post
+        </button>
+        {
+          this.state.data.length > 0 ? (
+            this.state.data.map(item =>
+              <Card item={item}
+                handleSubmit={this.handleSubmit}
+                handleEdit={this.handleEdit.bind(this, item .id)}
+                handleDelete={this.handleDelete.bind(this, item.id)}
+              handleCancel={this.handleCancel}
+              />)
+          ) : (
+            <div class='card mt-5 col-sm'>
+              <div class='card-body'>You don't have any posts. Use the "Add New Post" button to add new posts! 
+              </div>
+            </div>
+          )
+        }
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(e(Admin), document.querySelector('#root'));
