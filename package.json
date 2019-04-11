@@ -1,7 +1,7 @@
 {
-  "name": "dev-musing",
+  "name": "okta-blog",
   "version": "1.0.0",
-  "description": "NOde-Express-React Blog",
+  "description": "Node-Express-React Blog",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mauabe/dev-musing.git"
+    "url": "git+https://github.com/mauabe/okta-blog.git"
   },
   "author": "Mauricio Feldman-Abe",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mauabe/dev-musing/issues"
+    "url": "https://github.com/mauabe/okta-blog/issues"
   },
-  "homepage": "https://github.com/mauabe/dev-musing#readme",
+  "homepage": "https://github.com/mauabe/dokta-blog#readme",
   "dependencies": {
     "@okta/oidc-middleware": "^1.0.2",
     "babel": "^6.23.0",
