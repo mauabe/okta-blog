@@ -2,3 +2,4 @@
 /dist
 .DS_Store
 secret-env.js
+okta-blog-secret-env.js
