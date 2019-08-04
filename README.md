@@ -12,7 +12,7 @@ You can find a great tutorial [from Scotch.io here.][scotch]
 
 You need `Node.js` installed in your system if you want to call yourself a developer. On Terminal, or your favorite command line application, type `node --version` or `node -v`. This will give the version already installed in your system. If Node is not installed, you will get an error message `node: command not found.` In this case, download the [current LTS version from nodejs.org website][node website] and install it in your computer.
 
-Use `npm` on Terminal to setup the project. Again, type `npm -v` to check the version of npm. Install the newer version or `npm` typing `npm i -g npm` on Terminal. `i` is a pro abreviation for `install` and the flag `-g` means you are installing it on the whole computer, not just the current project. 
+Use `npm` on Terminal to setup the project. Again, type `npm -v` to check the version of npm. Install the newer version or `npm` typing `npm i -g npm` on Terminal. `i` is a pro abbreviation for `install` and the flag `-g` means you are installing it on the whole computer, not just the current project. 
 
 Create an new folder, navigate with Terminal. Type the command `npm init` and follow the prompts to setup your project. It creates a file `package.json`, with instructions and shortcuts for your project.
 
