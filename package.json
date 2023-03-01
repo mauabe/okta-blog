@@ -36,6 +36,6 @@
   "devDependencies": {
     "braces": "^3.0.2",
     "mixin-deep": "^2.0.1",
-    "nodemon": "^1.19.1"
+    "nodemon": "^2.0.20"
   }
 }
