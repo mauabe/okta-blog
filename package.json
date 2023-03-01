@@ -21,7 +21,7 @@
     "@okta/oidc-middleware": "^5.0.0",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "epilogue": "^0.7.1",
